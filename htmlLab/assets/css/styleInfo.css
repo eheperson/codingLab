@@ -1,0 +1,155 @@
+/*//////////////////////////////////////////////////////////////////////////////
+//////     > CSS Bicimendirme Dosyasidir                           /////////////
+//////                                                             /////////////
+//////     > Temel Bilgiler Dosyanin En Altindadir                 /////////////
+//////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////  C S S   T E M E L    B I L G I L E R ////////////////////////////////////////////////
+
+    CSS Seciciler :
+
+      # class Seciciler :
+                          > Nokta(.) ile tanimlanir.
+                          >
+
+                          .renklendir{
+                            color:red;
+                            font-size:20px;
+                          }
+
+      # id Seciciler    :
+                          > Diyez(#) isareti ile tanimlanir.
+                          >
+                          #renklendir{
+                            color:blue;
+                            font-size: 20px;
+                          }
+
+      # tag Seciciler   :
+                          > Bleirtilen html elementlerine ozeldir
+                          >
+
+                          div{
+                            color:blue;
+                            font-size:25px;
+                          }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    CSS Dosyalarini Dahil Etme :
+
+      1 - <head> taglari arasinda <style> </style> taglari ile still bicimleri eklenebilir
+
+                  <style>
+                    .renklendir{
+                    color : blue;
+                    }
+                  </style>
+
+      2 - CSS Dosyalari harici olarak html dosyasina <head> taglari arasinda asagidaki sekilde tanimlanabilir.
+
+                 <link rel="stylesheet" type="text/css" href="..\style\style.css" >
+
+      3 - Herhangi bir html elementine ozellik(attribute) olarak tanimlanabilir.
+
+                 <p style="color:blue;"> Lorem iptisum ... </p>
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.yazitipiOzellikleri{
+  color                     : ...;                  (red .. #ffffff)
+  font-family               : ...;                  (Tahoma .. Verdana .. Tahoma, Arial ..)
+  font-size                 : ...;                  (40px .. 90px)
+  font-weight               : ...;                  (bold .. 900 .. 200 .. 0)
+  font-style                : ...;                  ( italic .. normal)
+}
+
+.metinOzellikleri{
+  word-spacing               : ...;                 (1cm .. 0.5cm)
+  letter-spacing             : ...;                 (0.3cm)
+  text-decoration            : ...;                 (underline .. overline .. line-through .. none)
+  vertical-align             : ...;                 (baseline .. top .. middle .. bottom .. super)
+  text-transform             : ...;                 (capitalize .. lowercase .. uppercase)
+  text-align                 : ...;                 (center .. right .. left .. justify)
+  text-indent                : ...;                 (5cm)
+  line-height                : ...;                 (5px .. 20px)
+}
+
+.listelemeOzellikleri{
+  list-style-type            : ...;                 (lower-roman .. square .. katakana .. upper-alpha .. upper-roman .. decimal-leading-zero)
+  list-style-image           : ...;                 ( url(icon_image_url_adress) )
+  list-style-position        : ...;                 (inside .. outside)
+}
+
+.fareIsaretciOzellikleri{
+  cursor                     : ...;                 (move .. crosshair .. help ..  wait .. text .. ne-resize .. se-resize .. hand)
+
+}
+
+.zeminOzellikleri{
+  background:    red url('image_url_adress');
+  background-size            : ...;                 (cover .. )
+  background-color           : ...;                 (green .. orange ..)
+  background-image           : ...;                 ( url(image_url) )
+  background-repeat          : ...;                 (no-repeat .. repeat-x .. repeat-y)
+  background-position        : ...;                 (right .. )
+  background-attachment      : ...;                 ( fixed .. )
+}
+
+.kutuMOdelleriOZellikleri{
+  width                      :
+  height                     :
+  margin                     :                      ( 50px .. 50px 70px .. )
+  margin-left                :
+  margin-rignt               :
+  margin-top
+  padiing                    :                      ( 50px .. 50px 70px .. )
+  padding-left               :
+  padding-right              :
+  patting-top                :
+  padding-bottom             :
+}
+
+.borderOzellikleri{
+  border : 1px solid #f00;
+  border-right: 10px dotted #000
+  border-left: 30px double #0f0;
+  border-top: 20px solid #00f;
+  border-bottom: 5px dashed #f00;
+  border-width:
+  border-style: solid;
+  border-color: #00f;
+  border-top-width: 20px;
+  border-top-color:
+  border-top-style:
+}
+
+
+.divStandartOzellikler{
+  color: #00f;
+  width: 200px;
+  height: 400px;
+  float : left !important;  (right)
+  max-height : 300px;
+  max-widtht: 100px;
+  min height:
+  min-width:
+  text-align: justify, center, right, left
+}
+
+/* Important Attributies
+
+*/
+
+/* Resim Kodlari
+rgb(,,,);
+rgba(,,,,);
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

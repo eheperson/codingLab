@@ -1,0 +1,57 @@
+p{
+    padding-left: 20px;
+    margin-left: 5px;
+}
+
+#testId{
+    font-size: 16px;
+}
+
+.testClass{
+    font-size: 12px;
+}
+
+.somethingClass{
+    position : absolute;
+    top :20px;
+    right : 30px;
+    height: 500px;
+    width: 300px;
+    border: 2px solid #000;
+    background-color: #000;
+}
+
+.somethingClass>p{
+    padding :5px;
+    margin:2px;
+    border : 1px solid black;    
+}
+
+
+.p-1{
+    font-size: 24px;
+    font-weight: 400;
+    color :firebrick;
+    
+}
+
+.p-2{
+    font-size: 32px;
+    font-weight: 600;
+    color :firebrick;
+    
+
+}
+#special{
+    font-size: 40px;
+    font-weight: 800;
+    color:firebrick;
+    
+}
+
+#ehes{
+    position : absolute;
+    bottom :50px;
+    right : 50px;
+
+}

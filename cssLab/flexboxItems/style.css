@@ -1,0 +1,153 @@
+
+/*------------------------- 
+  GENERAL SETTINGS 
+---------------------------*/
+.flex-head{
+    color: #000;
+    text-align: center;
+}
+
+/*
+    shorthands:
+        flex : flex-grow flex-shrink flex-basis;
+        flex : 0 1 1px;
+
+*/
+
+/*---------------------------------
+ FLEXBOX CONTAINER - 1 STYLE CODES 
+----------------------------------*/
+
+.flexbox-container-1{
+    /*height: 1000px;*/
+
+    color:#000;
+    display: flex;
+
+    background-color:yellow;
+
+    flex-direction: row;
+    /*with flex-direction :row
+        x axis being main-axis
+        y axis being cross-axis */
+    
+    justify-content: center;
+    /* Align items according to main-axis */
+    /* justify-content: space-between;
+    justify-content: space-around;*/
+
+    align-items: center;
+    /* Align items according to cross-axis */
+    /*align-items: center;
+    align-items: flex-end;*/
+
+
+}
+
+.flexbox-item-1{
+    width: 200px;
+    margin: 10px;
+    border: 3px solid #333;
+    background-color: #dfdfdf;
+}
+
+.flexbox-item-1-1{
+    min-height:100px;
+    
+    flex-shrink: 1;
+    /* don't use flex-wrap:wrap
+       if flex-shrink will used*/
+    
+    align-self: flex-start;
+    flex-grow: 1;
+    flex-basis:0;
+    order:3;
+}
+
+.flexbox-item-1-2{
+    min-height:200px;
+    flex-basis:0;
+    flex-grow:2;
+    align-self:center;
+    order:1;
+
+}
+
+.flexbox-item-1-3{
+    min-height:300px;
+    flex-grow:2;
+    flex-basis:0;
+    order:2;
+    
+}   
+
+/*---------------------------------
+ FLEXBOX CONTAINER - 2 STYLE CODES 
+----------------------------------*/
+
+.flexbox-container-2{
+    /*height: 1000px;*/
+    position: relative;
+    color:#000;
+    display: flex;
+
+    background-color: #4f5512;
+
+    flex-wrap: wrap;
+    /* flex-wrap : wrap property
+        allows reorganize items 
+        if the size of the window
+        is changed */
+
+    flex-direction: column;
+    /*with flex-direction :column 
+        y axis being main-axis
+        x axis being cross-axis */
+    
+    justify-content: space-around ;
+    /* Align items according to main-axis */
+    /* justify-content: space-between;
+    justify-content: space-around;*/
+
+    align-items: center;
+    /* Align items according to cross-axis */
+    /*align-items: center;
+    align-items: flex-end;*/
+
+    align-content: center;
+    /*align-content: space-between;*/
+    /*align-content property is  only for using multiline flexbox cntainer*/
+    /* align-content is very similar to justify content*/ 
+    /* Dont use itvery much, not cool*/
+}
+
+.flexbox-item-2{
+    width: 200px;
+    margin: 10px;
+    border: 3px solid #333;
+    background-color: #dfdfdf;
+}
+
+.flexbox-item-2-1{
+    min-height:100px;
+    
+
+
+    align-self: flex-start;
+
+    
+    
+}
+
+.flexbox-item-2-2{
+    min-height:200px;
+    align-self:center;
+
+}
+
+.flexbox-item-2-3{
+    min-height:300px;
+
+    order:2;
+    
+}   

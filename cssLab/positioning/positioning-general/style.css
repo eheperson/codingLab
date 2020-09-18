@@ -1,0 +1,112 @@
+/*
+---------------------------------------------------------------------------------------------------------------------------
+position : <...>;
+
+    <..>  
+    Static - this is the default value, all elements are in order as they appear in the document.
+    Relative - the element is positioned relative to its normal position.
+    Absolute - the element is positioned absolutely to its first positioned parent.
+    Fixed - the element is positioned related to the browser window.
+    Sticky - the element is positioned based on the user's scroll position.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Absolute positioning tricks :
+
+    - This type of positioning allows you to place your element precisely where you want it.
+
+    - The positioning is done relative to the first relatively (or absolutely) positioned parent element. 
+      In the case when there is no positioned parent element, it will be positioned related directly to the HTML element (the page itself).
+
+    - An important thing to keep in mind while using absolute positioning is to make sure it is not overused, 
+      otherwise, it can lead to a maintenance nightmare.
+
+    As an example : 
+        the parent element has the position set to relative. 
+        Now, when you set the position of the child element to absolute, 
+        any additional positioning will be done relative to the parent element. 
+        The child element moves relative to the top of the parent element by 100px and right of the parent element by 40px.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+*/
+
+
+html,
+body{
+    padding:0;
+    margin:0;
+}
+
+.parent {
+    padding: 5px;
+    background-color: #00AAFF;
+    position : relative;
+    height:200vh
+
+    /* 
+    */
+     /* -- Absolute position absolutely position an element
+             inside of some parent container that it can reference
+             
+        -- If parent positioned as static, that means it can't have anything
+            else positioned absolutely or relatively to it
+            
+        -- In order to change an element so that we can position something 
+            absolutely or relatively to it we need to use one of the other
+            positioning elements of either relative, absolute, sticky or fixed
+            in order to make an element position absolutely inside of it */
+
+
+
+  }
+  
+  .child {
+    padding: 5px;
+    margin:5px;
+  }
+  
+  .child-one {
+    background-color: rgb(116, 255, 116);
+    position: absolute;
+    top:0;
+    right:100px;
+    /*position : absolute;
+        it completely removes the element from document flow
+        and everything else renders as if that absolute positioned element
+         did not even exists at all
+         That makes absolute position usefull when we want stick something
+         in specific position
+    */
+   
+  } 
+  .child-two {
+    background-color: rgb(248, 117, 117);
+    position:sticky;
+    top:0px;
+    /*sticky position is a combination of the relative position and fixed position into one*/
+  }
+  
+  .child-three {
+    background-color: rgb(255, 116, 232);
+    position: fixed;
+    top: 0;
+    right:0;
+    /* Difference between absolute and fixed : 
+        Absolute doesn't moves when user scroll the page  down*/
+  }
+
+  .child-four{
+    background-color: rgb(235, 37, 37);
+  }
+
+  .child-five{
+    background-color: rgb(37, 73, 235);
+    position: relative;
+    /*position : static;*/
+    /*Difference between static and relative :
+        Relative position acts exactly like static position
+        But it allows to do specific positioning about top, left, right and bottom.
+      Static is the default position value*/
+    top:30px;
+  }

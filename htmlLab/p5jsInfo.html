@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Personal CSS File-->
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <!-- Bootstrap 4 CDN-->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body  >
+
+    <br><br>
+    <hr>
+    <h1 id="header1" onmouseover="mouseover1()" onmouseout="mouseout1()" style="text-align:center;"> JavaScript Test Page </h1>
+    <hr>
+    <br><br><br>
+
+    <div id="btn1" align="center" style=" margin: 50px;">
+        <button onclick = "clickButton1()"> Click Me Mother Fucker ! 1</button>
+    </div>
+
+    <div id="btn2" align="center" style="align-self: auto ; margin: 50px;">
+        <button onclick = "this.innerHTML = 'Well Done Mother Fucker :) 2'"> Click Me Mother Fucker ! 2</button>
+    </div>
+
+    <div id="btn3" align="center" style="align-self: auto ; margin: 50px;">
+        <button onclick = "clickButton2(this)"> Click Me Mother Fucker ! 3</button>
+    </div>
+
+    <div id="btn4" align="center" style=" margin: 50px;">
+        <button onclick = "clickButton3()"> Click Me Mother Fucker ! 4</button>
+    </div>
+
+    <div align="center" style=" margin: 50px;">
+        <form name="form1"  action="send.php" method="post" onsubmit="return check();">
+
+            <input type="text" name="name1">
+                <br>
+                <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+    <!-- Personal JavaScript File-->
+    <script type="text/javascript" src="assets/scripts/main.js"></script>
+    <!-- Jquery CDN-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
