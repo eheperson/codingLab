@@ -1,5 +1,5 @@
-// url adres for requesting 
-let url = 'https://raw.githubusercontent.com/eheperson/codingLAb/master/jsLAb/ajaxjs/json/animals-1.json'
+
+let pageCounter = 1;
 
 // select empty div in html page
 let animalContainer = document.getElementById("animal-info")
@@ -9,6 +9,9 @@ let btn = document.getElementById("btn");
 
 // Event Listener for button
 btn.addEventListener("click", function(){
+    // url adres for requesting 
+    let url = 'https://raw.githubusercontent.com/eheperson/codingLAb/master/jsLAb/ajaxjs/json/animals-' + pageCounter + '.json'
+
     // r : our request
     let r = new XMLHttpRequest();
 
@@ -21,6 +24,11 @@ btn.addEventListener("click", function(){
         // JSON.parse() : convert text data to json format
         let d = JSON.parse(r.responseText)
         renderHtml(d);
+        pageCounter++;
+
+        if(pageCounter>3){
+            btn.classList.add("hide-me");
+        }
     };
 
     r.send();
@@ -28,8 +36,29 @@ btn.addEventListener("click", function(){
 
 function renderHtml(data){
     let htmlString = "";
+
     for(i = 0; i<data.length; i++){
-        htmlString +=  "<p>" + data[i].name + "is a " + data[i].species +  ".</p>";
+        htmlString +=  "<p>" + data[i].name + "is a " + data[i].species + "that likes to eat";
+
+        for(ii = 0; ii < data[i].foods.likes.length; ii++){
+            if(ii == 0){
+                htmlString += data[i].foods.likes[ii];
+            }else{
+                htmlString += " and " + data[i].foods.likes[ii];
+            }
+        }
+
+        htmlString += ' and dislikes ';
+
+        for(ii = 0; ii < data[i].foods.dislikes.length; ii++){
+            if(ii == 0){
+                htmlString += data[i].foods.dislikes[ii];
+            }else{
+                htmlString += " and " + data[i].foods.dislikes[ii];
+            }
+        }
+
+        htmlString += ".</p>"
     }  
     animalContainer.insertAdjacentHTML('beforeend', htmlString);
 };
