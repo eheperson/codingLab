@@ -1,0 +1,36 @@
+
+
+if(condition) <one_line_of_code> ;
+
+if(condition) {
+    <multiple_line_of_codes>;
+}
+
+
+*********************************************
+
+if(condition){
+
+}
+
+else{
+
+}
+
+**********************************************
+
+if(condition){
+
+}
+
+else if(another_condition){
+
+}
+
+else if(another_condition){
+
+}
+
+else{
+    
+}

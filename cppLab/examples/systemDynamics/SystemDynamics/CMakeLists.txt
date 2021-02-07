@@ -1,0 +1,1 @@
+add_library(sysdyn sysdyn.hpp sysdyn.cpp)

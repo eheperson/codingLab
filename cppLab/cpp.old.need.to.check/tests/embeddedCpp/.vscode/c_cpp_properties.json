@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/kuzub/embedded/STM32CubeF4-master/Drivers/CMSIS/Include",
+                "/home/kuzub/embedded/STM32CubeF4-master/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c99",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

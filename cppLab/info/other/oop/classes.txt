@@ -1,0 +1,46 @@
+
+access_specifiers : public, private, protected
+
+class testClass{
+    public:
+        <members are accessible from outside the class>
+    private:
+        <members cannot be accessed (or viewed) from outside the class>
+    protected:
+        <members cannot be accessed from outside the class, however, they can be accessed in inherited classes.>
+
+}
+
+--------------------
+#include<cmath> //for sqrt()
+
+void testC{
+    public:
+        int x = 5;
+        int y = 12;
+
+        void pythagoras();
+    
+    private:
+        int z = 8;
+}
+
+void testC::pythagoras(){
+    std::cout<<sqrt(x*x + y*y)<<std::endl;
+}
+
+int main(){
+    testC c1, c2;
+
+    c1.x =4
+    c1.y = 6;
+    c1.pythagoras();
+
+    c2.x = 6;
+    c2.y = 8;
+    c2.pythagoras();
+
+    c1.z = 5; // error
+    c2.z = 6; //error
+    return 0;
+}

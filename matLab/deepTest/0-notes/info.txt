@@ -1,0 +1,64 @@
+
+########Performance Plot(plotperform)
+> Egitim, dogrulama ve test alt kumelerinin hata grafiklerini ayri renkler ile gosterir
+> Performans grafiginde en iyi performans degeri ayri olarak belirtilir.
+> Kabul edilebilir sonuclar : 
+  -Son epochra ki hata degerlerinin karelerinin ortalamasinin(mse:mean-square-error)
+   baslangica gore cok dusuk olmasi beklenir.
+  -Test ve dogrulama alt kumelerinin hata grafiklerinin ayni karakteristige sahip olmasi beklenir.
+   Bu sonuclar onemli bir overfitting meydana gelmedigini gosterir.
+  -Dogrulama alt kumesinin egitim alt kumesinin karakteristigine gore onemli bir artis gostermesi beklenir.
+   Aksi durum overfitting'e isaret eder.
+  -En iyi dogrulama performansinin isaretli oldugu yerde dikkate deger bir overfitting olmamasi beklenir.
+
+########Regression Plot(plotregression)
+> Agin cikti degerleri ile hedef degerleri arasindaki iliskiyi gosterir.
+  Egtim mukemmel sonuc verir ise cikti degerleri ve hedef degerleri neredeyse birbirine esit olur.
+  Baska bir deyis ile, regresyon grafigi 'output' ile bu outputlara karsilik gelen 'target' 
+  degerleri icin lineer regresyon gerceklestiriyor
+
+> Target verilerine gore train, test ve validation alt kumelerinin ciktilarini gosterir.
+> En iyi fitting icin vriler 45 derecelik cizgi uzerine oturmali(Ciktilarin hedeflere esit oldugu esit oldugu cizgi)
+
+> Regresyon agin performansinin mukemmel oturma(perfect fit) icin dogrulanmasina yarar.
+  Regresyon egrisinde ki45 derecelik dogru target=output grafigidir ve regresyon 
+  egrisinin mumkun oldugunca bu dogrunun uzerine oturmasi istenir.
+
+> It shows the relationship between the outputs of the network and the targets. If the training were perfect,
+  the network outputs and the targets would be exactly equal, but the relationship israrely perfect in practice.
+
+> Kabul edilebilir degerler:
+  -Regresyon egrisinin outputunun target egrisinin uzerine oturmasi beklenir.
+
+> R degeri :
+  - Output ile target arasindaki iliskinin olcusudur.
+    R 1'e ne kadar yakin ise output degerleri o kadar target'e yakindir.
+    R 0'a ne kadar yakin ise egitim o kadar basarisiz olmustur.
+
+########Error Histogram (ploterrorhist)
+> Error histogram agin erformansini ek olarak tekrar dogrulama icin kullanilabilir(additional verification).
+> Histtogram aykiri degerlerin belirlenmesinde yardimci olur ve bize aykiri degerleri gosterir. 
+> Aykiri Deger : Herhangi bir veri orneginde fitting geri kalan verilerden 
+  onemli olcude yanlis olmussa bu veri degeri aykiri veridir
+
+> mavi    : training verileri
+  yesil   : validation verileri
+  kirmizi : test verileri
+
+
+########Receiver Operating Characteristics(ROC)
+> The colored lines in in each axis represents the ROC curves.
+> ROC Curve : A plot af the true positive rate(sensitivity) versus the 
+              false positive rate(i-specifity) as the threshold is varied.
+> A perfect test would show pointsin the upper left corner with 100% sensitivity and 100% specifity
+
+########Confusion Matrix
+> Red Squares   : Incorrect response
+  Green Squares : Correct Response
+  Blue Squares  : Overall Occuracies
+> If high number of correct response in the green and the low number of 
+  incorrect response in the red squares : "The network output very accurate"
+> The diagonal cells show the nmber of cases that very correctly classified 
+  and the offdiagonal cells show the misclassified cases.
+> The blue cell in the bottom right shows the total percent of correctly 
+  classified cases(in green) and the total percent of misclassified cases(in red)

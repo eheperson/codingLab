@@ -1,0 +1,14 @@
+#include <iostream>
+
+#define PI 3.14159
+#define NEWLINE std::cout << std::endl;
+
+int main(int argc, const char * argv[])
+{
+    // insert code here...
+    std::cout << PI;
+    
+    NEWLINE;
+    
+    return 0;
+}

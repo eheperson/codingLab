@@ -1,0 +1,26 @@
+
+f = [0 100 200 300 400 500 600 700 800]; %force
+x = [0 0.15 0.23 0.31 0.37 0.50 0.57 0.68 0.77]; %deflection
+
+% x = f*a
+a = (x(9) - x(1))/(f(9) - f(1));
+
+
+figure
+
+plot(f,x, 'o')
+xlabel('force')
+ylabel('deflection')
+title('force-deflection characteristic')
+
+hold on
+
+%slope calculation for linear model
+% we use x = f*a model for our problem
+x_p = f*a
+
+plot(f,x_p, '--')
+
+
+
+legend('real data', 'linear model', [330 55 0 0])

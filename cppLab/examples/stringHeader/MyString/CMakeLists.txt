@@ -1,0 +1,1 @@
+add_library(myString myString.hpp myString.cpp)
