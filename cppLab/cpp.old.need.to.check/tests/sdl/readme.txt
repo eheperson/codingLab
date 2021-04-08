@@ -1,1 +1,0 @@
-g++ -o <objectName>  main.cpp `pkg-config --libs --cflags sdl2`

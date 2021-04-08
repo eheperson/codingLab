@@ -4,7 +4,7 @@
 > myProg.exe
 
 
-#-----Project Directory Structure-------
+#-----Project Directory Structure 1 -------
 
 Project_name
   |
@@ -31,3 +31,32 @@ Project_name
   |
   |
   |---- tests
+
+
+#-----Project Directory Structure 2 -------
+
+Project_name
+  |
+  |---- CMakeLists.txt
+  |
+  |---- build
+  |       |
+  |       |---- xxxxx
+  |                 |
+  |                 |---- xxxx
+  |
+  ---- src
+  |     |
+  |     |---- xxxx
+  |     |
+  |     |---- xxxx
+  |
+  |
+  |---- xxxx
+  |       |
+  |       |---- xxxx
+  |       |
+  |       |---- xxxx
+  |
+  |
+  |---- xxxxx

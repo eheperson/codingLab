@@ -1,3 +1,0 @@
-/home/kuzub/Documents/workSpace/codes/cpp/tests/cmakeTest/test02/out/build/CMakeFiles/edit_cache.dir
-/home/kuzub/Documents/workSpace/codes/cpp/tests/cmakeTest/test02/out/build/CMakeFiles/rebuild_cache.dir
-/home/kuzub/Documents/workSpace/codes/cpp/tests/cmakeTest/test02/out/build/CMakeFiles/ehe.dir

@@ -1,0 +1,52 @@
+
+
+class testC{
+    public:
+        testC();
+        int speed;
+        float age;
+
+}
+
+testC :: testC(){
+    speed = 45;
+    age = 5.6;
+}
+
+----------------------------------------------------------------------
+
+class testC{
+    public:
+        testC(int s, float a);
+        int speed;
+        float age;
+
+}
+
+testC :: testC(int s, float a){
+    speed = s;
+    age = a;
+}
+
+----------------------------------------------------------------------
+
+class testC{
+    public:
+        testC();
+        testC(int s, float a);
+        int speed;
+        float age;
+
+}
+
+testC :: testC(){
+    speed = 45;
+    age = 5.6;
+}
+
+// Constructor overloading
+testC :: testC(int s, float a){
+    speed = s;
+    age = a;
+}
+

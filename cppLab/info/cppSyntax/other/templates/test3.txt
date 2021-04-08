@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+
+template<class Item>
+Item array_max(Item data[], size_t n){
+	size_t i;
+	Item answer;
+	answer = data[0];
+	for (i=1; i<n; i++)
+		if (data[i]>answer) answer = data[i];
+		return answer;
+}
+
+template <class T>
+T larger (T a, T b){
+	if (a>b)
+		return a;
+	else 
+		return b;
+}
+
+
+
+
+int main (){
+	
+	int foo [5]={16,2,77,40,12071};
+	string str_array [4] = {"qqqqq", "kayserispor", "111111", "ZZZZZZZZZZ"};
+	char c_array[7] = {'Q', 'a', 'c', '-', '!','\'', '\\',};
+	
+	cout<<"Greater value is " << array_max(foo,5)<<endl;
+	cout<<"Greater value is " << array_max(str_array,4)<<endl;
+	cout<<"Greater value is " << larger(9,5)<<endl;
+	cout<<"Greater value is " << larger(8.3,7.1)<<endl;
+	
+	return 0;
+}

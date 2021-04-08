@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1597866756 source:c:\users\kuzub\documents\workspace\c\cmaster\main.c
+	<stdio.h>
+	<stdlib.h>
+	"testLib.h"
+
+1597866707 c:\users\kuzub\documents\workspace\c\cmaster\testlib.h
+

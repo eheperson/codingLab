@@ -1,0 +1,2 @@
+#define EHE_VERSION_MAJOR 1
+#define EHE_VERSION_MINOR 0

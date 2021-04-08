@@ -1,0 +1,15 @@
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: D:/gitRepos/codingLab/cppLab/examples/cppSource/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s): -f Makefile cmTC_e1a7d/fast && The parameter is incorrect
+Generator: execution of make failed. Make command was:  -f Makefile cmTC_e1a7d/fast && 
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: D:/gitRepos/codingLab/cppLab/examples/cppSource/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s): -f Makefile cmTC_72456/fast && The parameter is incorrect
+Generator: execution of make failed. Make command was:  -f Makefile cmTC_72456/fast && 
+
+

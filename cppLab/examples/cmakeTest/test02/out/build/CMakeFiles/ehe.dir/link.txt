@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/ehe.dir/main.cpp.o CMakeFiles/ehe.dir/adder.cpp.o  -o ehe 

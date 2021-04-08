@@ -1,0 +1,30 @@
+
+
+Initialization : net = init(net);
+    -check the network's biases and wweights again to see how they have changed
+     (net.IW{i,j}, net.LW{i,j}, net.b{i})
+
+
+Simulation : y =sim(net,x)
+    - Before training we can simulate the network to see whether 
+      the initial network's response 'Y' is close to the target 'T'
+
+Configuration : net = configure(net, x)
+    - After a NN has been created, it must be configured. The configuration step cpnsist of examining input and 
+      target data, setting the network's input and output sizes to match the data, and choosing setting for processing
+      inputs and outputs that will enabled best network performance.
+    - It is the process of setting network input and output sizes and ranges, input preprocessing settings and
+      weights initialization settings to match input and target data.
+
+> net = configure(net, x)               : configures only inputs
+> net = configure(net, x, t)            : takes I data and T data, and configures the network's I and I to match.
+> net = configure(net, 'inputs' , x.i)  
+> net = configure(net, 'outputs', t.i)  : configures theI/O specified with the index vector.
+
+!! Configureation must happen before a network's weights and biases can be initialized. Unconfigured networks
+   are automatically configured adn initialized the first time train is called.
+   Unconfigured networks are automatically configured and initialized the first time train called.
+   
+   After configuration look again at the weights : net.layerWeights{2,1}
+   
+   Before the input is applied to the network, it will be processed by two functions : 'removeconstantrows', 'mapminmax'

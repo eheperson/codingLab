@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/Array/array.cpp
+iostream
+-
+array.hpp
+C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/Array/array.hpp
+
+C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/Array/array.hpp
+

@@ -1,0 +1,26 @@
+#include <iostream>
+
+class Vehicle
+{
+public:
+    Vehicle( int speed, int age );
+    
+    int speed;
+    int age;
+    
+};
+
+Vehicle::Vehicle( int speed, int age )
+{
+    this->speed = speed;
+    this->age = age;
+}
+
+int main(int argc, const char * argv[])
+{
+    Vehicle bmw (500, 789);
+    
+    std::cout << bmw.speed << std::endl;
+    
+    return 0;
+}

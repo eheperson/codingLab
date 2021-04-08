@@ -1,6 +1,0 @@
-C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/out/build/CMakeFiles/headerFilesTest.dir
-C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/out/build/CMakeFiles/edit_cache.dir
-C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/out/build/CMakeFiles/rebuild_cache.dir
-C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/out/build/Array/CMakeFiles/array.dir
-C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/out/build/Array/CMakeFiles/edit_cache.dir
-C:/Users/baran/Desktop/Workspace/Cpp/info/16-headers/out/build/Array/CMakeFiles/rebuild_cache.dir

@@ -1,9 +1,0 @@
-#include <iostream>
-
-int main(int argc, const char * argv[])
-{
-#line 470 "TROUBLE DECLARING INTEGER abcde"
-    int abcde{}}}{;
-    
-    return 0;
-}
