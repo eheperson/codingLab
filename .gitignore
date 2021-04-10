@@ -1,3 +1,11 @@
 ./pyLab/deeplearning/dataSets/*
 [A[A[A[B[B[BpyLab/deeplearning/dataSets/*
 pylab/deeplearning/dataSets
+
+temp/
+
+.vscode/
+vscode/
+./vscode
+./.vscode
+pyLab/.vscode

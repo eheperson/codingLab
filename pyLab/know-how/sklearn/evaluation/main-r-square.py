@@ -1,6 +1,9 @@
 # !/usr/local/bin/python
 # -*- coding: utf-8 -*-  ``
 #----------------------------------------------------------------------
+#   That evaluation matric is generally used for regressionalgorithms
+#   REGRESSION ALGORITHMS EVALUATION METRIC
+#----------------------------------------------------------------------
 # import library
 import pandas as pd
 import matplotlib.pyplot as plt

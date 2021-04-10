@@ -9,9 +9,6 @@ import numpy as np
 # sklearn library for regression
 from sklearn.linear_model import LogisticRegression
 #
-# sklearn rsquare evaluation import 
-from sklearn.metrics import r2_score
-#
 # sklearn train test split
 from sklearn.model_selection import train_test_split
 #

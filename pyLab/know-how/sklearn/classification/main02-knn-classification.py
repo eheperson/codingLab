@@ -9,9 +9,6 @@ import numpy as np
 # sklearn library for classification
 from sklearn.neighbors import KNeighborsClassifier
 #
-# sklearn rsquare evaluation import 
-from sklearn.metrics import r2_score
-#
 # sklearn train test split
 from sklearn.model_selection import train_test_split
 #
@@ -22,8 +19,7 @@ from sklearn.model_selection import train_test_split
 # linux os   : "D:/gitRepos/codingLab/pyLab/know-how/sklearn/datasets/lr-dataset.csv"
 datapath = "D:\gitRepos\codingLab\pyLab\know-how\sklearn\datasets\classification-dataset.csv"
 data = pd.read_csv(datapath)
-
-# %%
+#
 data.drop(["id","Unnamed: 32"],axis=1,inplace=True)
 data.tail()
 # malignant = M  kotu huylu tumor
