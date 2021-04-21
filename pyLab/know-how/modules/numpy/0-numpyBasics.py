@@ -99,4 +99,74 @@ print(b.ndim)
 print(c.ndim)
 print(d.ndim)   
 #-----------------------------------------------------------------------------------------------------
+# indexing
 
+x = np.arange(10)
+
+x
+
+x[5]
+
+x[2:7]
+
+x[3:]
+
+x[:5]
+
+x[:5] = 20
+
+x
+
+x = np.arange(10)
+
+x
+
+x2 = x[:5]
+
+x2
+
+x2[:] = 55
+
+x2
+
+x
+
+x_copy = x.copy()
+
+x
+
+x_copy
+
+x_copy[:] = 66
+
+x_copy
+
+x
+
+mat = np.array([[10,20,30], [40,50,60], [70,80,90]])
+
+mat
+
+mat[1][2]
+
+mat[1,2]
+
+mat[:2,1:]
+
+x = np.arange(10)
+
+x = np.arange(10)
+
+x
+
+x<5
+
+bool_x = x<5
+
+bool_x
+
+x[bool_x]
+
+x[x>5]
+
+x[x<3]
