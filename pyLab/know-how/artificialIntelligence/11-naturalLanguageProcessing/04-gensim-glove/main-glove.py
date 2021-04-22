@@ -1,20 +1,65 @@
 #
+#------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
+# Import required modules
 from gensim.scripts.glove2word2vec import glove2word2vec
 from gensim.models import KeyedVectors
 #
-glove_input = 'glove.6B.100d.txt'
-word2vec_output = 'glove.6B.100d.word2vec'
-glove2word2vec(glove_input, word2vec_output)
+#------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
+# Load input data text
+gloveInput = r'D:\\Libraries\Datasets\\NLP\\GloVe\\glove.6B.100d.txt'
+word2vecOutput = 'glove.word2vec'
+glove2word2vec(gloveInput, word2vecOutput)
 #
-model = KeyedVectors.load_word2vec_format(word2vec_output, binary=False)
+#------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
+# Create GloVe model
+model = KeyedVectors.load_word2vec_format(word2vecOutput, binary=False)
 #
-model['istanbul']
+#------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
+# Examine the vetors and model
 #
-model.most_similar('kangaroo')
+# to see vector of any word in datatext
+print("*\n*")
+print("Vector of 'Istanbul' word : \n", model['ring'])
 #
-model.most_similar(positive=['woman', 'son'], negative=['man'], topn=1)
+# to seemost similar words of any word in datatext
+print("*\n*")
+print("Similar words with 'Istanbul' word : \n", model.most_similar('gandalf'))
 #
-model.most_similar(positive=['bangkok', 'germany'], negative=['berlin'], topn=1)
+#------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
+# Vector aritmetics ????? >>>>>> THAT IS SO COOL
+print("*\n*")
+print("* * * * * * VECTOR ARITMETIC OPERATIONS FOR WORD VECTORS * * * * * *")
+print("*\n*")
 #
+# Vector substraction example : king - man + woman = queen
+# topn = 1 : show only 1 result( best result)
+vec = model.most_similar(positive=['king', 'woman'], negative=['man'], topn=1)
+print("*\n*")
+print("king - man + woman = queen : ", vec )
+#
+# Vector substraction example : father - man + woman = mother?
+# topn = 2 : show 2 result (top 2 result)
+vec = model.most_similar(positive=['father', 'woman'], negative=['man'], topn=1)
+print("*\n*")
+print("father - man + woman = ?? : ", vec )
+#
+# Vector substraction example : son - man + woman = daughter?
+# topn = 2 : show 2 result (top 2 result)
+vec = model.most_similar(positive=['woman', 'son'], negative=[ 'man'], topn=1)
+print("*\n*")
+print("son - man + woman = = ?? : ", vec )
+#
+# Another random example
+# topn = 1 : show only 1 result( best result)
+vec = model.most_similar(positive=['ankara', 'germany'], negative=['berlin'], topn=1)
+print("*\n*")
+print("germany - berlin + ankara = = ?? : ", vec )
+#
+
 model.most_similar(positive=['teach', 'doctor'], negative=['treat'], topn=1)
 #
