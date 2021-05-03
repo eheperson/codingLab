@@ -1,5 +1,4 @@
-./pyLab/deeplearning/dataSets/*
-./pyLab/deeplearning/dataSets/*
+
 pylab/deeplearning/dataSets
 
 temp/
@@ -10,7 +9,7 @@ vscode/
 ./.vscode
 pyLab/.vscode
 
-./cppLab/workshop/particleSimulator/.gitignore-internal.txt
-./cppLab/workshop/particleSimulator/build/*
-./cppLab/workshop/particleSimulator/build
-./cppLab/workshop/particleSimulator/build/
+
+
+
+cppLab/workshop/particleSimulator/build/
