@@ -1,0 +1,25 @@
+#
+#
+add_library(ehe-lib
+            ehe-lib/ehelib.h
+            ehe-lib/ehelib.cpp)
+#
+target_include_directories(ehe-lib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+#
+target_include_directories(ehe-lib PUBLIC libs/sdl/include)
+target_link_directories(ehe-lib PUBLIC libs/sdl)
+target_link_libraries(ehe-lib PUBLIC mingw32 SDL2main SDL2) # 'mingw32 SDL2main SDL2' order important
+#
+#
+#--------------------------------------------------------------------
+add_library(screen
+            Screen/Screen.h
+            Screen/Screen.cpp)
+#
+target_include_directories(screen PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+#
+target_include_directories(screen PUBLIC libs/sdl/include)
+target_link_directories(screen PUBLIC libs/sdl)
+target_link_libraries(screen PUBLIC mingw32 SDL2main SDL2) # 'mingw32 SDL2main SDL2' order important
+
+#--------------------------------------------------------------------

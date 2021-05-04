@@ -12,4 +12,7 @@ pyLab/.vscode
 
 
 
-cppLab/workshop/particleSimulator/build/
+cppLab/workshop/cppSource/build
+
+build
+[Bb][Uu][Ii][Ll][Dd]

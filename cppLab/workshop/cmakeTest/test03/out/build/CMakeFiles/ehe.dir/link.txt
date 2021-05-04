@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/ehe.dir/main.cpp.o  -o ehe   -L/home/kuzub/Documents/workSpace/codes/cpp/tests/cmakeTest/test03/Adder  -Wl,-rpath,/home/kuzub/Documents/workSpace/codes/cpp/tests/cmakeTest/test03/Adder Adder/libadder.a 

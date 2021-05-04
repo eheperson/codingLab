@@ -1,0 +1,67 @@
+#
+#
+set(CMAKE_C_COMPILER "D:/apps/msys64/mingw64/bin/gcc.exe")
+set(CMAKE_CXX_COMPILER "D:/apps/msys64/mingw64/bin/g++.exe")
+#
+cmake_minimum_required(VERSION 3.20.2)
+project(ehe)
+#
+#--------------------------------------------------------------------
+add_executable(eheApp src/test.cpp)
+add_executable(sdlTest src/main.cpp)
+#
+#
+#--------------------------------------------------------------------
+add_subdirectory (src)
+target_link_libraries(eheApp PUBLIC ehe-lib)
+target_link_libraries(sdlTest PUBLIC screen )
+# target_link_libraries(eheApp )
+#
+#
+#--------------------------------------------------------------------
+#-------------- DOWNLOAD ALL THE SUBMODULES
+# first open terminal and type : 
+#   git submodule add https://github.com/libsdl-org/SDL.git libs/sdl
+#   git submodule add https://github.com/glfw/glfw.git libs/glfw
+# second add changes to staged area (we have to stage it)
+#  
+find_package(Git QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+# Update submodules as needed
+    option(GIT_SUBMODULE "Check submodules during build" ON)
+    if(GIT_SUBMODULE)
+        message(STATUS "Submodule update")
+        execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                        RESULT_VARIABLE GIT_SUBMOD_RESULT)
+        if(NOT GIT_SUBMOD_RESULT EQUAL "0")
+            message(FATAL_ERROR "git submodule update --init failed with ${GIT_SUBMOD_RESULT}, please checkout submodules")
+        endif()
+    endif()
+endif()
+#
+#--------------------------------------------------------------------
+#-------------- CHECK ALL THE SUBMODULES
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/libs/sdl/CMakeLists.txt")
+    message(FATAL_ERROR "The sdl submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+endif()
+#
+# if(NOT EXISTS "${PROJECT_SOURCE_DIR}/libs/glfw/CMakeLists.txt")
+#     message(FATAL_ERROR "The glfw submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+# endif()
+#--------------------------------------------------------------------
+add_subdirectory(libs/sdl)
+#after adding sdl as a subdirectory
+#we have toconfigure and build
+#
+target_include_directories(eheApp PUBLIC libs/sdl/include)
+target_link_directories(eheApp PUBLIC libs/sdl)
+target_link_libraries(eheApp PUBLIC mingw32 SDL2main SDL2) # 'mingw32 SDL2main SDL2' order important
+#
+target_include_directories(sdlTest PUBLIC libs/sdl/include)
+target_link_directories(sdlTest PUBLIC libs/sdl)
+target_link_libraries(sdlTest PUBLIC mingw32 SDL2main SDL2) # 'mingw32 SDL2main SDL2' order important
+#--------------------------------------------------------------------
+
+#
+#--------------------------------------------------------------------
