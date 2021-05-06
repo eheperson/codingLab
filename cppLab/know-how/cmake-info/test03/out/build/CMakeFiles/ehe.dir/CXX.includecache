@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../Adder/adder.h
+
+/home/kuzub/Documents/workSpace/codes/cpp/tests/cmakeTest/test03/main.cpp
+iostream
+-
+adder.h
+-
+
