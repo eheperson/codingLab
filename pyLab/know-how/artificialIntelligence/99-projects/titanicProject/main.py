@@ -169,7 +169,7 @@ outliers = trainDF.drop(t.detectOutliers(trainDF, ["Age", "SibSp", "Parch", "Far
 #
 #---------------------------------------------------------------------------#
 #---------------------------------------------------------------------------#
-# Missing Values 
+# Missing Values - I
 #
 #   In that step we will focus on 'NaN' value data in our dataset
 #   And our purpose is to get rid of them
@@ -230,9 +230,147 @@ print (farePclass)
 #
 # calculating mean value of the value-cells which have
 # Pclass=3 and their "Fare" values must be not missing
-newFare = np.mean(farePclass = dataFrame[dataFrame["Pclass"] == 3]["Fare"])
+newFare = np.mean(dataFrame[dataFrame["Pclass"] == 3]["Fare"])
 # and write it to missing Fare : 
 dataFrame["Fare"] = dataFrame["Fare"].fillna(newFare)
+#
+#---------------------------------------------------------------------------#
+#---------------------------------------------------------------------------#
+# Visualization
+#
+# Correlation Matrix   --------------------------------------------------#
+# between SibSp-Parch-Age-Fare-Survived
+featureList = ['SibSp', 'Parch', 'Age', 'Fare', 'Survived']
+sns.heatmap(dataFrame[featureList].corr(), annot=True, fmt = ".3f")
+plt.show()
+# We could observe that from correlation matrix :
+#       'Fare' feature seems to have good correlation with 'Survived' feature (0.26) 
+#
+# Correlation Between SibSp-Survived  --------------------------------------------------#
+g = sns.factorplot(x="SibSp", y="Survived", data=dataFrame, kind="bar", size=5)
+g.set_ylabels("Survived Probability")
+plt.show()
+# Observations :
+#     - Having a lot of SibSp have less chance to survive.
+#     - if SibSp==0 or 1 or 2, passenger has more chance to survive
+#     - We can consider a new feature describing these categories
+#
+# Correlation Between Parch-Survived  --------------------------------------------------#
+g = sns.factorplot(x="Parch", y="Survived", data=dataFrame, kind="bar", size=5)
+g.set_ylabels("Survived Probability")
+plt.show()
+# Observations :
+#     - SibSp and Parch could be used for new feature extraction  with threshold:>3
+#     - Small families have more chance to surveive
+#
+# Correlation Between Pclass-Survived  --------------------------------------------------#
+g = sns.factorplot(x="Pclass", y="Survived", data=dataFrame, kind="bar", size=5)
+g.set_ylabels("Survived Probability")
+plt.show()
+# Observations :
+#     - Firs class passengers have more change to survive
+#
+# Correlation Between Age-Survived  --------------------------------------------------#
+g = sns.FacetGrid(dataFrame, col='Survived')
+g.map(sns.distplot, "Age", bins=25)
+plt.show()
+# Observations :
+#     - We should know that, age distribution always will have a gaussian distribution because of its nature.
+#     - Age <= 10 has a high survival rate
+#     - Oldest passengers(80) survived
+#     - Large number of 20 years old did not survive
+#     - Most passengers are in 15-35 age range
+#
+# Relation Between Pclass-Age-Survived  --------------------------------------------------#
+g = sns.FacetGrid(dataFrame, col='Survived', row='Pclass', size=2)
+g.map(sns.hist, "Age", bins=25)
+g.add_legend()
+plt.show()
+# Observations :
+#     - I do not know ho to interprate that graph.
+#
+# Relation Between Embarked-Sex-Pclass-Survived  --------------------------------------------------#
+g = sns.FacetGrid(dataFrame, row='Embarked', size=2)
+g.map(sns.pointplot, "Pclass", "Survived", "Sex")
+g.add_legend()
+plt.show()
+# Observations :
+#     - Female passengers have much better sruvival rate than males.
+#     - Males have better survival rate in pclass 3 in C
+#     - Embarked and Sex features could be used in training
+#
+# Relation Between Embarked-Sex-Fare-Survived  --------------------------------------------------#
+g = sns.FacetGrid(dataFrame, row='Embarked', col="Survived", size=2.3)
+g.map(sns.barplot(),"Sex", "Fare")
+g.add_legend()
+plt.show()
+# Observations :
+#     - Passengers who pay higher fare have better survival.
+#     - Fare can be used as categorical for training
+#
+# Relation Between Embarked-Sex-Pclass-Survived  --------------------------------------------------#
+g = sns.FacetGrid(dataFrame, row='Embarked', size=2)
+g.map(sns.pointplot, "Pclass", "Survived", "Sex")
+g.add_legend()
+plt.show()
+# Observations :
+#     - Female passengers have much better sruvival rate than males.
+#     - Males have better survival rate in pclass 3 in C
+#     - Embarked and Sex features could be used in training
+#
+#---------------------------------------------------------------------------#
+#---------------------------------------------------------------------------#
+# Missing Values - II (Age Feature)
+#
+# To see data don't have Age feature
+dataFrame[dataFrame["Age"].isnull()]
+#
+# We have to predict and than fill that missing Age values.
+# For that purpose, we have to examine other features and try
+# to find a correlation to fill Age feature
+#
+# First trying to examine "Sex" feature and chec if we could find
+# any relation to fill "Age"
+g = sns.factorplot(x="Sex", y="Age", data=dataFrame, kind="box")
+plt.show()
+# Observation : Sex is not informative for age prediction,
+#               because age distribution seems to be same.
+#
+# As a second trying, examine the "Pclass"
+g = sns.factorplot(x="Sex", y="Age", hue="Pclass", data=dataFrame, kind="box")
+plt.show()
+# Observation : -First class passengers are older than second class and,
+#                second class is older than 3rd class.
+#               -Pclass could be usefull to fill 'Age'
+#
+# As a third examination, examine the "Sibsp" and "Parch" together
+g = sns.factorplot(x="Parch", y="Age",  data=dataFrame, kind="box")
+g = sns.factorplot(x="SibSp", y="Age",  data=dataFrame, kind="box")
+plt.show()
+# Observation : - Nothing for now
+#
+# Now, lets check he correlation between those features.
+# Normally we cannot see the "Sex" feature on heatmap,
+# BEcause the feature type is a string type.
+# To be able to see, we need to convert it to numerical value.
+dataFrame["Sex"] = [1 if i == "male" else 0 for i in dataFrame["Sex"]]
+#
+sns.heatmap(dataFrame[["Age", "Sex", "SibSp", "Parch", "Pclass"]].corr(), anot=True)
+plt.show()
+# Observation : Age is not correlated with Sex but it is correlated with Parch, SibSp and Pclass.
+#
+# After all, it is time to fill None values in 'Age' feature.
+indexNanAge = list(dataFrame["Age"][dataFrame["age"].isnull()].index)
+for i in indexNanAge:
+    agePrediction = dataFrame["Age"][(dataFrame["SibSp"] == dataFrame.iloc[i]["SibSp"]) & (dataFrame["Parch"] == dataFrame.iloc[i]["Parch"]) & (dataFrame["Pclass"] == dataFrame.iloc[i]["Pclass"])].median()
+    #                                     ^
+    # If any error in manual method above ^
+    ageMedian = dataFrame["Age"].median()
+    if not np.isnan(agePrediction):
+        dataFrame["Age"].iloc[i] = agePrediction
+    else :
+        dataFrame["Age"].iloc[i] = ageMedian
+#
 #
 #
 #
