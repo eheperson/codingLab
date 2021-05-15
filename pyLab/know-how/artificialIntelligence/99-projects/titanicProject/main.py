@@ -11,6 +11,21 @@ import warnings
 import titanic as t
 #
 #
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import GridSearchCV
+#
+from sklearn.linear_model import LogisticRegression
+#
+from sklearn.svm import SVC
+#
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensembe import VotingClassifier 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+#
+from sklearn.metrics import accuracy_score
+#
 #
 warnings.filterwarnings('ignore')
 #
@@ -283,7 +298,7 @@ plt.show()
 #
 # Relation Between Pclass-Age-Survived  --------------------------------------------------#
 g = sns.FacetGrid(dataFrame, col='Survived', row='Pclass', size=2)
-g.map(sns.hist, "Age", bins=25)
+g.map(sns.histplot, "Age", bins=25)
 g.add_legend()
 plt.show()
 # Observations :
@@ -301,7 +316,7 @@ plt.show()
 #
 # Relation Between Embarked-Sex-Fare-Survived  --------------------------------------------------#
 g = sns.FacetGrid(dataFrame, row='Embarked', col="Survived", size=2.3)
-g.map(sns.barplot(),"Sex", "Fare")
+g.map(sns.barplot,"Sex", "Fare")
 g.add_legend()
 plt.show()
 # Observations :
@@ -355,12 +370,12 @@ plt.show()
 # To be able to see, we need to convert it to numerical value.
 dataFrame["Sex"] = [1 if i == "male" else 0 for i in dataFrame["Sex"]]
 #
-sns.heatmap(dataFrame[["Age", "Sex", "SibSp", "Parch", "Pclass"]].corr(), anot=True)
+sns.heatmap(dataFrame[["Age", "Sex", "SibSp", "Parch", "Pclass"]].corr(), annot=True)
 plt.show()
 # Observation : Age is not correlated with Sex but it is correlated with Parch, SibSp and Pclass.
 #
 # After all, it is time to fill None values in 'Age' feature.
-indexNanAge = list(dataFrame["Age"][dataFrame["age"].isnull()].index)
+indexNanAge = list(dataFrame["Age"][dataFrame["Age"].isnull()].index)
 for i in indexNanAge:
     agePrediction = dataFrame["Age"][(dataFrame["SibSp"] == dataFrame.iloc[i]["SibSp"]) & (dataFrame["Parch"] == dataFrame.iloc[i]["Parch"]) & (dataFrame["Pclass"] == dataFrame.iloc[i]["Pclass"])].median()
     #                                     ^
@@ -371,7 +386,174 @@ for i in indexNanAge:
     else :
         dataFrame["Age"].iloc[i] = ageMedian
 #
+#---------------------------------------------------------------------------#
+#---------------------------------------------------------------------------#
+# Feature Engineering
 #
+# Extracting new feature from "Name"  --------------------------------------------------#
+#
+dataFrame["Name"].head(10)
+# The output of that cide will display passenger names with
+# their titles. Names does not meaningfull for us but titles does.
+# We could use titles to determine if any relationship exist between survival and titles.
+#
+names = dataFrame["Name"]
+#
+# 'McCharty, Mr. Timothy J' > 'McCharty, Mr.', 'Timoty J' > 'McCharty', ' Mr.', 'Timoty J' 
+# Use .strip() to get ride of the gaps
+# And wi will create new  feature as 'Title'
+dataFrame["Title"] = [i.split('.')[0].split(',')[-1].strip() for i in names]
+#
+t.seperator(" First 10 rows of new feature 'Title' : ")
+print(dataFrame["Title"].head(10))
+#
+# Histogram of titles
+sns.countplot(x='Title', data=dataFrame)
+plt.xticks(rotation = 60)
+plt.show()
+# Observation : We have to combine low count titles as 'Other'
+## Replacing :
+titlesReplace = ["Lady", "the Countess", "Col", "Don", "Dr", "Major", "Rev", "Sir", "Jonkheer", "Dona"]
+dataFrame["Title"] = dataFrame["Title"].replace(titlesReplace, "Other")
+#
+# Now we need to convert srting values to numerical : 
+#   Master, Miss
+dataFrame["Title"] = [0 if i == "Master" else 1 if i == "Miss" or i == "Ms" or i == "Mlle" or i == "Mrs" else 2 if i =="Mr" else 3 for i in dataFrame["Title"]]
+#
+t.seperator(" First 10 rows of new feature 'Title' as numerical : ")
+print(dataFrame["Title"].head(10))
+#
+# Now, we will ompare survival states according to "Title"
+g = sns.factorplot(X="Title", y = "Survived", data=dataFrame, kind="bar")
+g.set_xticklabels(["Master", "Mrs", "Mr", "Other"])
+g.set_ylabels("Survival Probability")
+plt.show()
+# Observations : 
+#   > We turn the useless "Name" feature to usefull "Title" feature.
+#   > Passengers has Mrs title has more change of survival. 
+# We could drop "Name" feature from data frame
+dataFrame.drop(labels = ["Name"], axis = 1, inplace = True)
+#
+t.seperator(" First 10 rows of new data frame ('Name' feature is dropped) : ")
+print(dataFrame["Title"].head(10))
+#
+# Converting Each value of "Title" to Feature
+dataFrame = pd.get_dummies(dataFrame, columns = ["Title"])
+t.seperator(" First 10 rows of new data frame ('title' feature is converted) : ")
+dataFrame.head(10)
+#
+# Extracting new feature from "SibSp" and "Parch" --------------------------------------------------#
+# we will name that new feature as "Fsize" : Family Size
+dataFrame["Fsize"] = dataFrame["SibSp"] + dataFrame["Parch"] + 1
+# +1 means that person
+#
+# Check if any relation between "Fsize" and "Survival"
+g = sns.factorplot(X="Fsize", y = "Survived", data=dataFrame, kind="bar")
+g.set_ylabels("Survival Probability")
+plt.show()
+#
+# Next step is converting "Fsize" to categorical data
+#   a treshold value picked as : 4.5
+#   if family size < 4.5 = 1
+#   if family size > 4.5 = 0
+# creating new feature to store that categorical information
+dataFrame["familySize"] = [1 if i < 5 else 0 for i in dataFrame["Fsize"]]
+#
+# histogram of "familySize" : 
+#sns.countplot(x="familySize", data=dataFrame)
+#plt.show()
+#
+# # Examine relation between survival and familySize
+# g = sns.factorplot(X="familySize", y = "Survived", data=dataFrame, kind="bar")
+# g.set_ylabels("Survival Probability")
+# plt.show()
+#   Observations : 
+#       Small families have more change to survive than big families
+#
+# Converting Each value of "familySize" to Feature
+dataFrame = pd.get_dummies(dataFrame, columns = ["familySize"])
+#
+# Extracting new feature from "Embarked" --------------------------------------------------#
+#
+# Counting how many kind "embarked" value
+sns.countplot(x="familySize", data=dataFrame)
+plt.show()
+# Observations :
+#   > There are 3 kind of embarked value : Q, S, C
+# Now we will turn "Ebarked" to cathegorical
+dataFrame = pd.get_dummies(dataFrame, columns = ["Embarked"])
+#
+# Extracting new feature from "Ticket" --------------------------------------------------#
+#
+tickets = []
+for i in list(dataFrame.Ticket):
+    if not i.isdigit():
+        tickets.append(i.replace(".", "").replace("/", "").strip().split("")[0])
+    else:
+        ticketc.append("X")
+dataFrame["Ticket"] = tickets
+#
+# Now we will turn "Ticket" to cathegorical
+dataFrame = pd.get_dummies(dataFrame, columns = ["ticket"], prefix="T")
+# mean of the  prefix="T" use "T" instead of "Ticket" when name new categorical features
+#
+# Extracting new feature from "Pclass" --------------------------------------------------#
+#
+# Counting how many kind "Pclass" value
+sns.countplot(x="Pclass", data=dataFrame)
+plt.show()
+#
+#There is nothing to do about "Pclass"
+# But we will convert "Pclass" to categorical
+dataFrame["Pclass"] = dataFrame["Pclass"].astype("category")
+dataFrame = pd.get_dummies(dataFrame, columns = ["Pclass"])
+#
+# Extracting new feature from "Sex" --------------------------------------------------#
+#
+#There is nothing to do about "Sex"
+# But we will convert "Sex" to categorical
+dataFrame["Sex"] = dataFrame["Sex"].astype("category")
+dataFrame = pd.get_dummies(dataFrame, columns = ["Sex"])
+#
+# Dropping useless feature for Machine Learning --------------------------------------------------#
+#
+dataFrame.drop(labels = ["PassengerID", "Cabin"], axis = 1, inplace = True)
+#
+#
+#---------------------------------------------------------------------------#
+#---------------------------------------------------------------------------#
+# Machine Learning Model
+#
+# Create Train, Test and Validation data --------------------------------------------------#
+#
+testData = dataFrame[trainDFsize:]
+testData.drop(labels = ["survived"], axis = 1, inplace = True)
+#
+trainData = dataFrame[:trainDFsize]
+xTrain = trainData.drop(labels = ["survived"], axis = 1, inplace = True)
+yTrain = trainData["survived"]
+#
+xTrain, xVal, yTrain, yVal = train_test_split(xTrain, yTrain, test_size=0.33, random_state=42)
+# Val : Validation
+#
+t.seperator("train_test_split() output : ")
+print("xTrain Size   : ", len(xTrain))
+print("yTrain Size   : ", len(yTrain))
+print("xVal Size     : ", len(xVal))
+print("yVal Size     : ", len(yVal))
+print("Test Size     : ", len(test))
+#
+# Simple Logistic Regression --------------------------------------------------#
+#
+logReg = LogisticRegression()
+logReg.fit(xTrain, yTrain)
+#
+accLogRegTrain = round(score(xTrain, yTrain)*100, 2)
+accLogRegTest =  round(score(xTest, yTest)*100, 2)
+#
+t.seperator(" Simple Logistic Regressin Accuracies  :  ")
+print("Training Accuracy : %{}".format(accLogRegTrain))
+print("Testing Accuracy : %{}".format(accLogRegTest))
 #
 #
 print('')
