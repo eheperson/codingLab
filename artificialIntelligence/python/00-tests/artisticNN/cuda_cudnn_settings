@@ -1,0 +1,12 @@
+
+
+###For windows
+
+SET PATH=D:\apps\NVIDIA\CUDA\v11.0\bin;%PATH%
+SET PATH=D:\apps\NVIDIA\CUDA\v11.0\extras\CUPTI\lib64;%PATH%
+SET PATH=D:\apps\NVIDIA\CUDA\v11.0\include;%PATH%
+SET PATH=D:\apps\NVIDIA\cudnn\bin;%PATH%
+
+D:\apps\NVIDIA\cudnn
+
+D:\apps\NVIDIA\CUDA\v11.0
