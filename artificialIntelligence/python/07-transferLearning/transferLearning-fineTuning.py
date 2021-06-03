@@ -38,3 +38,13 @@ for images, labels in train_dataset.take(1):
     plt.axis("off")
 #
 plt.show()
+#
+# As the original dataset doesn't contain a test set, you will create one.
+#   To do so, determine how many batches of data are available in the validation set using 'tf.data.experimental.cardinality'
+val_batches = tf.data.experimental.cardinality(validation_dataset)
+test_dataset = validation_dataset.take(val_batches // 5)
+validation_dataset = validation_dataset.skip(val_batches // 5)
+#
+print('Number of validation batches: %d' % tf.data.experimental.cardinality(validation_dataset))
+print('Number of test batches: %d' % tf.data.experimental.cardinality(test_dataset))
+# ---- Data Preprocessing ------------------------------------------------------------------------------------------------
