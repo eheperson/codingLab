@@ -16,3 +16,6 @@ cppLab/workshop/cppSource/build
 cppLab/workshop/cppSource/libsgit 
 
 /artificialIntelligence/python/datasets
+
+/artificialIntelligence/python/00-tests/tensorflow/tensorflowOD/main/workspace/
+/artificialIntelligence/python/00-tests/tensorflow/tensorflowOD/venvOD/

@@ -555,6 +555,81 @@ t.seperator(" Simple Logistic Regressin Accuracies  :  ")
 print("Training Accuracy : %{}".format(accLogRegTrain))
 print("Testing Accuracy : %{}".format(accLogRegTest))
 #
+# -----------------------------------------------------------------------------------------------------------------------#
+## Hyperparameter Tuning -- Grid Search -- Cross Validation --------------------------------------------------#
+# We will compare 5 ml classifier and evaluate mean accuracy of each 
+# of them by stratified cross validation.
+#   - Decision Tree, SVM, Random Forest, KNN, Logistic Regression
+#
+# 
+random_state = 42
+classifier = [DecisionTreeClassifier(random_state = random_state),
+             SVC(random_state = random_state),
+             RandomForestClassifier(random_state = random_state),
+             LogisticRegression(random_state = random_state),
+             KNeighborsClassifier()]
+#
+dt_param_grid = {"min_samples_split" : range(10,500,20),
+                "max_depth": range(1,20,2)}
+#
+svc_param_grid = {"kernel" : ["rbf"],
+                 "gamma": [0.001, 0.01, 0.1, 1],
+                 "C": [1,10,50,100,200,300,1000]}
+#
+rf_param_grid = {"max_features": [1,3,10],
+                "min_samples_split":[2,3,10],
+                "min_samples_leaf":[1,3,10],
+                "bootstrap":[False],
+                "n_estimators":[100,300],
+                "criterion":["gini"]}
+#
+logreg_param_grid = {"C":np.logspace(-3,3,7),
+                    "penalty": ["l1","l2"]}
+#
+knn_param_grid = {"n_neighbors": np.linspace(1,19,10, dtype = int).tolist(),
+                 "weights": ["uniform","distance"],
+                 "metric":["euclidean","manhattan"]}
+#
+classifier_param = [dt_param_grid,
+                   svc_param_grid,
+                   rf_param_grid,
+                   logreg_param_grid,
+                   knn_param_grid]
+#
+#
+cv_result = []
+best_estimators = []
+for i in range(len(classifier)):
+    clf = GridSearchCV(classifier[i], param_grid=classifier_param[i], cv = StratifiedKFold(n_splits = 10), scoring = "accuracy", n_jobs = -1,verbose = 1)
+    clf.fit(X_train,y_train)
+    cv_result.append(clf.best_score_)
+    best_estimators.append(clf.best_estimator_)
+    print(cv_result[i])
+#
+#
+cv_results = pd.DataFrame({"Cross Validation Means":cv_result, "ML Models":["DecisionTreeClassifier", "SVM","RandomForestClassifier",
+             "LogisticRegression",
+             "KNeighborsClassifier"]})
+
+g = sns.barplot("Cross Validation Means", "ML Models", data = cv_results)
+g.set_xlabel("Mean Accuracy")
+g.set_title("Cross Validation Scores")
+#
+# 
+# Ensemble Modeling
+votingC = VotingClassifier(estimators = [("dt",best_estimators[0]),
+                                        ("rfc",best_estimators[2]),
+                                        ("lr",best_estimators[3])],
+                                        voting = "soft", n_jobs = -1)
+votingC = votingC.fit(X_train, y_train)
+print(accuracy_score(votingC.predict(X_test),y_test))
+#
+#
+# Prediction and SUbmission
+test_survived = pd.Series(votingC.predict(test), name = "Survived").astype(int)
+results = pd.concat([test_PassengerId, test_survived],axis = 1)
+results.to_csv("titanic.csv", index = False)
+#
 #
 print('')
 print('')
