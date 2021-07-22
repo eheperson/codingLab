@@ -20,3 +20,5 @@ cppLab/workshop/cppSource/libsgit
 /artificialIntelligence/python/00-tests/tensorflow/tensorflowOD/main/workspace/
 /artificialIntelligence/python/00-tests/tensorflow/tensorflowOD/venvOD/
 /experimental/chatbotProject/cornell_movie_dialogs_corpus
+
+/experimental/objectDetection/detector/tensorflow
