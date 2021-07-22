@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+    <title></title>
+  </head>
+  <body >
+    <div  class=" container-fluid">
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="videocontainer">
+            <div class="embed-responsive embed-responsive-16by9">
+              <div class="embed-responsive-item">
+                <video autoplay muted loop  id="background" src={{ url_for('static', filename="nosignal.mp4") }}  ></video>
+              </div>
+            </div>
+          </div>
+          <div  class="text-center text-white " >
+            <h1 style="font-size:60px; font-weight: 900; font-family:Courier;">NO SIGNAL</h1>
+        
+            <p style="font-size:60px; font-weight: 900; font-family:Courier;">    STAND BY</p>
+            <br><br>
+            <a style=" color: blanchedalmond; font-size:30px; position: relative; z-index:9 ; font-family:Courier; background-color: black; opacity: 0.5;" href="{{ url_for('machine') }}">   Wait or Return to Home? </a> 
+          </div>
+
+        </div>
+
+      </div>
+      <footer class="page-footer font-small blue fixed-bottom">
+        <!-- Copyright -->
+        <div class=" text-info footer-copyright text-center py-3">
+            © 2019 Copyright: eheSociety  Powered by <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+
+        </div>
+        <!-- Copyright -->
+
+      </footer>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

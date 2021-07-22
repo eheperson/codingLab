@@ -1,0 +1,55 @@
+body {
+  background: #000000 !important;
+  min-width: 100%;
+  min-height: 100%;
+  margin:0;
+  padding:0;
+}
+
+#background {
+height: 25vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    background-size: cover;
+}
+
+.videocontainer {
+height: 35vh;
+}
+
+.pl1{
+
+  font-size:18px; font-weight: 100; font-family:Courier New; color:#66ccff;
+}
+.pl2{
+
+  font-size:18px; font-weight: 100; font-family:Courier New; color:#66ccff;
+}
+
+.pl3{
+
+  font-size:17px; font-weight: 100; font-family:Courier New; color:#66ccff;
+}
+.pnav{
+
+  font-size:15px;
+  font-weight: 100;
+  font-family:Courier New;
+  color:#66ccff;
+
+}
+.container-fluid{height: 95%;}
+
+
+
+footer{
+  height:5%;
+
+}
