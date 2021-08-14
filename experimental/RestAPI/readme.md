@@ -11,11 +11,15 @@ sudo apt-get install libqtgui4 -y
 sudo apt-get install libqt4-test -y
 sudo apt-get install libhdf5-dev -y
 
-sudo pip3 install flask -y
-sudo pip3 install numpy -y 
-sudo pip3 install opencv-contrib-python -y
-sudo pip3 install imutils -y
-sudo pip3 install opencv-python -y
+pip3 install virtualenv
+
+virtualenv --python=/usr/bin/python3.7 venv
+
+sudo pip install flask -y
+sudo pip install numpy -y 
+sudo pip install opencv-python -y
+sudo pip install opencv-contrib-python -y
+sudo pip install imutils -y
 
 opencv-contrib build install dependencies error : 
     pip3 install -U setuptools pip
@@ -52,6 +56,9 @@ pipe :
     ssh user1@server1 'command1 | command2'
 multiple commands (must enclose in quotes # :
     ssh admin@box1 "command1; command2; command3"
+
+# SSH > WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED
+    ssh-keygen -R [hostname-or-IP]
 
 # Flask Notlar
 /app
